@@ -8,8 +8,8 @@
 // Just to fill up the stack allocator
 static void toss_me(benchmark::State& state) {
   using stan::math::var;
-  Eigen::Matrix<double, -1, -1> x_vals = Eigen::MatrixXd::Random(1300, 1300);
-  Eigen::Matrix<double, -1, -1> y_vals = Eigen::MatrixXd::Random(1300, 1300);
+  Eigen::Matrix<double, -1, -1> x_vals = Eigen::MatrixXd::Random(256, 256);
+  Eigen::Matrix<double, -1, -1> y_vals = Eigen::MatrixXd::Random(256, 256);
   using stan::math::var;
   using stan::math::sum;
   Eigen::Matrix<var, -1, -1> x = x_vals;
