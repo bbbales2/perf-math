@@ -16,9 +16,10 @@ static void mdivide_left_ldlt_matrix_vector(benchmark::State& state) {
 
     for(size_t i = 0; i < x_val.rows(); ++i)
       x_val(i, i) += 2.0 * state.range(0);
-
-    return std::make_tuple(stan::math::LDLT_factor<var, Eigen::Dynamic, Eigen::Dynamic>
-			   (promote_scalar<var>(x_val)),
+    
+    stan::math::LDLT_factor<var, Eigen::Dynamic, Eigen::Dynamic>
+    x_ldlt(promote_scalar<var>(x_val));
+    return std::make_tuple(x_ldlt,
 			   promote_scalar<var>(y_val));
   };
 
@@ -42,8 +43,9 @@ static void mdivide_left_ldlt_matrix_matrix(benchmark::State& state) {
     for(size_t i = 0; i < x_val.rows(); ++i)
       x_val(i, i) += 2.0 * state.range(0);
 
-    return std::make_tuple(stan::math::LDLT_factor<var, Eigen::Dynamic, Eigen::Dynamic>
-			   (promote_scalar<var>(x_val)),
+    stan::math::LDLT_factor<var, Eigen::Dynamic, Eigen::Dynamic>
+    x_ldlt(promote_scalar<var>(x_val));
+    return std::make_tuple(x_ldlt,
 			   promote_scalar<var>(y_val));
   };
 

@@ -12,8 +12,10 @@ static void trace_inv_quad_form_ldlt(benchmark::State& state) {
     Eigen::MatrixXd x_val = Eigen::MatrixXd::Random(state.range(0), state.range(0));
     Eigen::MatrixXd y_val = Eigen::MatrixXd::Random(state.range(0), state.range(0));
 
-    return std::make_tuple(stan::math::LDLT_factor<var, Eigen::Dynamic, Eigen::Dynamic>
-			   (promote_scalar<var>(x_val)), promote_scalar<var>(y_val));
+    stan::math::LDLT_factor<var, Eigen::Dynamic, Eigen::Dynamic>
+    x_ldlt(promote_scalar<var>(x_val));
+    
+    return std::make_tuple(x_ldlt, promote_scalar<var>(y_val));
   };
 
   auto run = [](const auto&... args) {
